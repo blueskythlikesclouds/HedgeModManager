@@ -7,8 +7,8 @@
         <local:ThemeEntry FileName="DarkerTheme" Name="Darker" IsDarkTheme="true"/>
         <local:ThemeEntry FileName="OLEDTheme" Name="OLED" IsDarkTheme="true"/>
         <local:ThemeEntry FileName="LightTheme" Name="Light"/>
-        <local:ThemeEntry FileName="W11DarkTheme" Name="Windows 11 Dark" UsesMica="true" IsDarkTheme="true"/>
-        <local:ThemeEntry FileName="W11LightTheme" Name="Windows 11 Light" UsesMica="true"/>
+        <local:ThemeEntry FileName="MicaDarkTheme" Name="Mica Dark" UsesMica="true" IsDarkTheme="true"/>
+        <local:ThemeEntry FileName="MicaLightTheme" Name="Mica Light" UsesMica="true"/>
     </local:ThemeList>
 
 </ResourceDictionary>

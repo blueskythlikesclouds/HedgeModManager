@@ -548,6 +548,17 @@ namespace HedgeModManager
 
             Current.Resources.MergedDictionaries.RemoveAt(2);
             Current.Resources.MergedDictionaries.Insert(2, themeDict);
+
+            foreach (var window in Current.Windows.OfType<Window>())
+                ToggleWindows11Mica(new WindowInteropHelper(window).Handle);
+        }
+
+        public static void ToggleWindows11Mica(IntPtr hwnd)
+        {
+            bool usesMica = Current.TryFindResource("UseWindows11Mica") as bool? ?? false;
+            bool isDarkTheme = Current.TryFindResource("IsDarkTheme") as bool? ?? false;
+
+            Win32.SetMicaAttributes(hwnd, usesMica, isDarkTheme);
         }
 
         /// <summary>
@@ -1135,6 +1146,42 @@ namespace HedgeModManager
                 // Cursed
                 Unsafe.Unbox<Thickness>(window.FindResource("HedgeWindowGridMargin")) = new Thickness(2);
             }
+
+            ToggleWindows11Mica(handle);
+        }
+
+        private unsafe void ContextMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!(TryFindResource("UseWindows11Mica") is bool useMica) || !useMica)
+                return;
+
+            var contextMenu = sender as ContextMenu;
+            if (contextMenu == null)
+                return;
+
+            var hwndSource = PresentationSource.FromVisual(contextMenu) as HwndSource;
+            Debug.Assert(hwndSource != null);
+
+            if (hwndSource == null)
+                return;
+
+            bool isDarkTheme = TryFindResource("IsDarkTheme") as bool? ?? false;
+
+            var accent = new Win32.AccentPolicy
+            {
+                AccentState = 0x4,
+                AccentFlags = 0x1862,
+                GradientColor = isDarkTheme ? 0x412B2B2B : 0x9EF9F9F9
+            };
+
+            Win32.SetWindowCompositionAttribute(hwndSource.Handle, new Win32.WindowCompositionAttributeData
+            {
+                Attribute = Win32.WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                SizeOfData = Marshal.SizeOf(accent),
+                Data = new IntPtr(&accent)
+            });
+
+            Win32.DwmSetWindowAttribute(hwndSource.Handle, Win32.DwmWindowAttribute.WindowCornerPreference, 2, 4);
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

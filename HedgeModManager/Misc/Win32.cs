@@ -10,12 +10,16 @@ namespace HedgeModManager.Misc
     public class Win32
     {
         [DllImport("dwmapi.dll", PreserveSig = true)]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, DwmWindowAttribute attr, ref int attrValue, int attrSize);
+        public static extern int DwmSetWindowAttribute(IntPtr hwnd, DwmWindowAttribute attr, in int attrValue, int attrSize);
+
         [DllImport("dwmapi.dll", PreserveSig = true)]
         public static extern int DwmGetWindowAttribute(IntPtr hwnd, DwmWindowAttribute attr, ref int attrValue, int attrSize);
 
         [DllImport("dwmapi.dll")]
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref Margins margins);
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, in Margins margins);
+
+        [DllImport("user32.dll")]
+        internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, in WindowCompositionAttributeData data);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
@@ -35,6 +39,12 @@ namespace HedgeModManager.Misc
             return buffer.ToString(0, LoadString(hInstance, id, buffer, buffer.Capacity));
         }
 
+        public static void SetMicaAttributes(IntPtr hwnd, bool enableMica, bool isDarkTheme)
+        {
+            DwmSetWindowAttribute(hwnd, DwmWindowAttribute.SystemBackdropType, enableMica ? 2 : 0, sizeof(int));
+            DwmSetWindowAttribute(hwnd, DwmWindowAttribute.UseImmersiveDarkMode, isDarkTheme ? 1 : 0, sizeof(int));
+        }
+
         public enum DwmWindowAttribute : uint
         {
             NCRenderingEnabled = 1,
@@ -52,7 +62,9 @@ namespace HedgeModManager.Misc
             Cloak,
             Cloaked,
             FreezeRepresentation,
-            WindowCornerPreference = 33
+            UseImmersiveDarkMode = 20,
+            WindowCornerPreference = 33,
+            SystemBackdropType = 38
         }
 
         public struct Margins
@@ -83,6 +95,28 @@ namespace HedgeModManager.Misc
             ShowWindow = 0x0040,
 
             ResetWindow = 0x0200 | 0x0002 | 0x0001 | 0x0020
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct AccentPolicy
+        {
+            public uint AccentState;
+            public uint AccentFlags;
+            public uint GradientColor;
+            public uint AnimationId;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct WindowCompositionAttributeData
+        {
+            public WindowCompositionAttribute Attribute;
+            public IntPtr Data;
+            public int SizeOfData;
+        }
+
+        internal enum WindowCompositionAttribute
+        {
+            WCA_ACCENT_POLICY = 19
         }
     }
 

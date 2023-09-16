@@ -4,42 +4,42 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Colours -->
-    <SolidColorBrush x:Key="HMM.Window.DialogBottom" Color="#FF131313"/>
+    <SolidColorBrush x:Key="HMM.Window.DialogBottom" Color="#0FFFFFFF"/>
     <SolidColorBrush x:Key="HMM.Window.AccentBrush" Color="#FF0056BC"/>
     <SolidColorBrush x:Key="HMM.Window.HeaderAccentBrush" Color="#FF0056BC"/>
     <SolidColorBrush x:Key="HMM.Window.AccentBrush1" Color="#FF006ABC"/>
     <SolidColorBrush x:Key="HMM.Window.AccentBrush2" Color="#FF007ABC"/>
     <SolidColorBrush x:Key="HMM.Window.AccentBrush3" Color="#FF0C87DA"/>
     <SolidColorBrush x:Key="HMM.Window.AccentForegroundBrush" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="HMM.Window.BackgroundBrush" Color="#FF191919"/>
-    <Color           x:Key="HMM.Window.BackgroundColor1" A="255" R="25" G="25" B="25"/>
+    <SolidColorBrush x:Key="HMM.Window.BackgroundBrush" Color="Transparent"/>
+    <Color           x:Key="HMM.Window.BackgroundColor1" A="15" R="255" G="255" B="255"/>
     <SolidColorBrush x:Key="HMM.Window.BackgroundBrush1" Color="{DynamicResource HMM.Window.BackgroundColor1}"/>
-    <SolidColorBrush x:Key="HMM.Window.BackgroundBrush2" Color="#FF202020"/>
+    <SolidColorBrush x:Key="HMM.Window.BackgroundBrush2" Color="Transparent"/>
     <SolidColorBrush x:Key="HMM.Window.ForegroundBrush" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="HMM.Window.BorderBrush" Color="#FF3F3F46"/>
-    <SolidColorBrush x:Key="HMM.Button.BackgroundBrush" Color="#FF202020"/>
+    <SolidColorBrush x:Key="HMM.Window.BorderBrush" Color="#FF323232"/>
+    <SolidColorBrush x:Key="HMM.Button.BackgroundBrush" Color="#0FFFFFFF"/>
     <SolidColorBrush x:Key="HMM.Button.ForegroundBrush" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="HMM.Window.LightForegroundBrush" Color="LightGray"/>
-    <Color           x:Key="HMM.Button.HoverColor"   A="255" R="45" G="45" B="47"/>
+    <SolidColorBrush x:Key="HMM.Window.LightForegroundBrush" Color="#C5FFFFFF"/>
+    <Color           x:Key="HMM.Button.HoverColor"   A="21" R="255" G="255" B="255"/>
     <Color           x:Key="HMM.Button.WarningColor" A="255" R="232" G="17"  B="35"/>
-    <Color           x:Key="HMM.Button.PressedColor" A="255" R="62" G="64" B="70"/>
+    <Color           x:Key="HMM.Button.PressedColor" A="8" R="255" G="255" B="255"/>
     <SolidColorBrush x:Key="HMM.Button.HoverBrush" Color="{DynamicResource HMM.Button.HoverColor}"/>
     <SolidColorBrush x:Key="HMM.Button.WarningBrush" Color="{DynamicResource HMM.Button.WarningColor}"/>
-    <Color           x:Key="HMM.Button.DisabledColor" A="255" R="30" G="30" B="30"/>
+    <Color           x:Key="HMM.Button.DisabledColor" A="11" R="255" G="255" B="255"/>
     <Color           x:Key="HMM.Button.FocusColor" A="255" R="255" G="255" B="255"/>
-    <Color           x:Key="HMM.Button.DisabledTextColor" A="255" R="101" G="101" B="101"/>
-    <SolidColorBrush x:Key="HMM.Menu.DisabledColor" Color="#FF323232"/>
-    <SolidColorBrush x:Key="HMM.Menu.HoverColor" Color="#FF575757"/>
-    <SolidColorBrush x:Key="HMM.Menu.DisabledTextColor" Color="#FFC9C9C9"/>
+    <Color           x:Key="HMM.Button.DisabledTextColor" A="93" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="HMM.Menu.DisabledColor" Color="#0BFFFFFF"/>
+    <SolidColorBrush x:Key="HMM.Menu.HoverColor" Color="#0FFFFFFF"/>
+    <SolidColorBrush x:Key="HMM.Menu.DisabledTextColor" Color="#5DFFFFFF"/>
     <SolidColorBrush x:Key="HMM.ComboBox.Popup.BackgroundBrush" Color="#FF202020"/>
 
     <SolidColorBrush  x:Key="HMM.Common.Red" Color="#E00000"/>
     <SolidColorBrush  x:Key="HMM.Common.Green" Color="#008B00"/>
 
     <SolidColorBrush  x:Key="HMM.PressedBrush" Color="{DynamicResource HMM.Button.PressedColor}"/>
-    <DropShadowEffect x:Key="HoverEffect" BlurRadius="5" Color="#FFA0A0A0" Opacity="0" Direction="0" ShadowDepth="0"/>
+    <DropShadowEffect x:Key="HoverEffect" BlurRadius="5" Color="#15FFFFFF" Opacity="0" Direction="0" ShadowDepth="0"/>
 
-    <system:Boolean x:Key="UseWindows11Mica">False</system:Boolean>
+    <system:Boolean x:Key="UseWindows11Mica">True</system:Boolean>
     <system:Boolean x:Key="IsDarkTheme">True</system:Boolean>
 
 </ResourceDictionary>

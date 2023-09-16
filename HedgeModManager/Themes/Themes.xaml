@@ -7,6 +7,8 @@
         <local:ThemeEntry FileName="DarkerTheme" Name="Darker"/>
         <local:ThemeEntry FileName="OLEDTheme" Name="OLED"/>
         <local:ThemeEntry FileName="LightTheme" Name="Light"/>
+        <local:ThemeEntry FileName="W11DarkTheme" Name="Windows 11 Dark"/>
+        <local:ThemeEntry FileName="W11LightTheme" Name="Windows 11 Light"/>
     </local:ThemeList>
 
 </ResourceDictionary>

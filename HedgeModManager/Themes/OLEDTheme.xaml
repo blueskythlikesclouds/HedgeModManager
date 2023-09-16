@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:HedgeModManager.Themes">
+                    xmlns:local="clr-namespace:HedgeModManager.Themes"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Colours -->
     <SolidColorBrush x:Key="HMM.Window.DialogBottom" Color="#FF101010"/>
@@ -30,11 +31,15 @@
     <SolidColorBrush x:Key="HMM.Menu.DisabledColor" Color="#FF222222"/>
     <SolidColorBrush x:Key="HMM.Menu.HoverColor" Color="#FF373737"/>
     <SolidColorBrush x:Key="HMM.Menu.DisabledTextColor" Color="#FFC9C9C9"/>
+    <SolidColorBrush x:Key="HMM.ComboBox.Popup.BackgroundBrush" Color="#FF303030"/>
 
     <SolidColorBrush  x:Key="HMM.Common.Red" Color="#E00000"/>
     <SolidColorBrush  x:Key="HMM.Common.Green" Color="#008B00"/>
 
     <SolidColorBrush  x:Key="HMM.PressedBrush" Color="{DynamicResource HMM.Button.PressedColor}"/>
     <DropShadowEffect x:Key="HoverEffect" BlurRadius="5" Color="#FF8ED0F9" Opacity="0" Direction="0" ShadowDepth="0"/>
+
+    <system:Boolean x:Key="UseWindows11Mica">False</system:Boolean>
+    <system:Boolean x:Key="IsDarkTheme">True</system:Boolean>
 
 </ResourceDictionary>

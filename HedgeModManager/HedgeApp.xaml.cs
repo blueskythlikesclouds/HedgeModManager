@@ -197,8 +197,8 @@ namespace HedgeModManager
             SetupLanguages();
             LoadLanguageFolder();
             SetupThemes();
-            CurrentTheme = InstalledThemes.FirstOrDefault(t => t.FileName == RegistryConfig.UITheme);
-            LoadTheme(CurrentTheme?.FileName ?? InstalledThemes.First().FileName);
+            CurrentTheme = InstalledThemes.FirstOrDefault(t => t.FileName == RegistryConfig.UITheme) ?? InstalledThemes[0];
+            LoadTheme(CurrentTheme.FileName);
             CurrentCulture = GetClosestCulture(RegistryConfig.UILanguage);
             if (CurrentCulture != null)
                 LoadLanguage(CurrentCulture.FileName);

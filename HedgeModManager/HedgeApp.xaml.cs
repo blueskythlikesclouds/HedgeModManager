@@ -531,7 +531,10 @@ namespace HedgeModManager
         {
             var resource = Current.TryFindResource("Themes");
             if (resource is ThemeList themes)
+            {
                 InstalledThemes = themes;
+                InstalledThemes.RemoveAll(x => !Win32.SupportsMicaAttributes && x.UsesMica);
+            }
         }
 
         public static void UpdateTheme()
@@ -549,16 +552,11 @@ namespace HedgeModManager
             Current.Resources.MergedDictionaries.RemoveAt(2);
             Current.Resources.MergedDictionaries.Insert(2, themeDict);
 
-            foreach (var window in Current.Windows.OfType<Window>())
-                ToggleWindows11Mica(new WindowInteropHelper(window).Handle);
-        }
-
-        public static void ToggleWindows11Mica(IntPtr hwnd)
-        {
-            bool usesMica = Current.TryFindResource("UseWindows11Mica") as bool? ?? false;
-            bool isDarkTheme = Current.TryFindResource("IsDarkTheme") as bool? ?? false;
-
-            Win32.SetMicaAttributes(hwnd, usesMica, isDarkTheme);
+            if (Win32.SupportsMicaAttributes)
+            {
+                foreach (var window in Current.Windows.OfType<Window>())
+                    Win32.SetMicaAttributes(new WindowInteropHelper(window).Handle, CurrentTheme.UsesMica, CurrentTheme.IsDarkTheme);
+            }
         }
 
         /// <summary>
@@ -1147,12 +1145,13 @@ namespace HedgeModManager
                 Unsafe.Unbox<Thickness>(window.FindResource("HedgeWindowGridMargin")) = new Thickness(2);
             }
 
-            ToggleWindows11Mica(handle);
+            if (Win32.SupportsMicaAttributes)
+                Win32.SetMicaAttributes(handle, CurrentTheme.UsesMica, CurrentTheme.IsDarkTheme);
         }
 
         private unsafe void ContextMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!(TryFindResource("UseWindows11Mica") is bool useMica) || !useMica)
+            if (!Win32.SupportsMicaAttributes || !CurrentTheme.UsesMica)
                 return;
 
             var contextMenu = sender as ContextMenu;
@@ -1165,13 +1164,11 @@ namespace HedgeModManager
             if (hwndSource == null)
                 return;
 
-            bool isDarkTheme = TryFindResource("IsDarkTheme") as bool? ?? false;
-
             var accent = new Win32.AccentPolicy
             {
                 AccentState = 0x4,
                 AccentFlags = 0x1862,
-                GradientColor = isDarkTheme ? 0x412B2B2B : 0x9EF9F9F9
+                GradientColor = CurrentTheme.IsDarkTheme ? 0x412B2B2B : 0x9EF9F9F9
             };
 
             Win32.SetWindowCompositionAttribute(hwndSource.Handle, new Win32.WindowCompositionAttributeData

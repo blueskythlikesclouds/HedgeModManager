@@ -38,8 +38,5 @@
 
     <SolidColorBrush  x:Key="HMM.PressedBrush" Color="{DynamicResource HMM.Button.PressedColor}"/>
     <DropShadowEffect x:Key="HoverEffect" BlurRadius="5" Color="#80F9F9F9" Opacity="0" Direction="0" ShadowDepth="0"/>
-    
-    <system:Boolean x:Key="UseWindows11Mica">True</system:Boolean>
-    <system:Boolean x:Key="IsDarkTheme">False</system:Boolean>
 
 </ResourceDictionary>

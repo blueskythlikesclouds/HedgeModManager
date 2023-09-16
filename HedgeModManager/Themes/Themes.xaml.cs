@@ -15,6 +15,8 @@ namespace HedgeModManager.Themes
     {
         public string FileName { get; set; }
         public string Name { get; set; }
+        public bool UsesMica { get; set; }
+        public bool IsDarkTheme { get; set; }
 
         public override string ToString() => Localise("Theme" + Name, Name);
     }

@@ -3,12 +3,12 @@
                     xmlns:local="clr-namespace:HedgeModManager.Themes">
 
     <local:ThemeList x:Key="Themes">
-        <local:ThemeEntry FileName="DarkTheme" Name="Dark"/>
-        <local:ThemeEntry FileName="DarkerTheme" Name="Darker"/>
-        <local:ThemeEntry FileName="OLEDTheme" Name="OLED"/>
+        <local:ThemeEntry FileName="DarkTheme" Name="Dark" IsDarkTheme="true"/>
+        <local:ThemeEntry FileName="DarkerTheme" Name="Darker" IsDarkTheme="true"/>
+        <local:ThemeEntry FileName="OLEDTheme" Name="OLED" IsDarkTheme="true"/>
         <local:ThemeEntry FileName="LightTheme" Name="Light"/>
-        <local:ThemeEntry FileName="W11DarkTheme" Name="Windows 11 Dark"/>
-        <local:ThemeEntry FileName="W11LightTheme" Name="Windows 11 Light"/>
+        <local:ThemeEntry FileName="W11DarkTheme" Name="Windows 11 Dark" UsesMica="true" IsDarkTheme="true"/>
+        <local:ThemeEntry FileName="W11LightTheme" Name="Windows 11 Light" UsesMica="true"/>
     </local:ThemeList>
 
 </ResourceDictionary>

@@ -33,6 +33,17 @@ namespace HedgeModManager.Misc
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int LoadString(IntPtr hInstance, uint uID, StringBuilder lpBuffer, int nBufferMax);
 
+        [DllImport("ntdll.dll")]
+        public static extern void RtlGetNtVersionNumbers(out uint majorVersion, out uint minorVersion, out uint buildNumber);
+
+        public static readonly bool SupportsMicaAttributes;
+
+        static Win32()
+        {
+            RtlGetNtVersionNumbers(out var majorVersion, out var minorVersion, out var buildNumber);
+            SupportsMicaAttributes = majorVersion >= 10 && (buildNumber & 0xFFFFFFF) >= 22621;
+        }
+
         public static string LoadString(IntPtr hInstance, uint id)
         {
             var buffer = new StringBuilder(2048);
